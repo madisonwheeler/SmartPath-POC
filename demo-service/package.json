@@ -6,7 +6,7 @@
   "scripts": {
     "pretest": "tsc",
     "test": "cucumber-js app/**/*.feature; npm run clean:js",
-    "clean:js": "rimraf app/**.js*"
+    "clean:js": "rimraf app/**.js* app/**/*.js*"
   },
   "dependencies": {
     "ftp": "0.3.10"
