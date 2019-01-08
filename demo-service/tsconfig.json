@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "sourceMap": true,
-    "target": "es6",
+    "target": "es5",
     "lib": [
       "esnext"
     ],
+    "rootDir": "app",
     "moduleResolution": "node"
   },
   "exclude": [
