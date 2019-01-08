@@ -8,6 +8,9 @@ plugins:
 provider:
   name: aws
   runtime: nodejs8.10
+  environment: 
+    FTP_USER: ${ssm:FTP_USER}
+    FTP_PW: ${ssm:FTP_PW}
 
 functions:
   hello:
@@ -16,3 +19,9 @@ functions:
       - http:
           method: get
           path: hello
+  download:
+    handler: ftpDownload/index.download
+    events:
+      - http:
+          method: get
+          path: ftpDownload
