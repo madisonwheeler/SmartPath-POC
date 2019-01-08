@@ -6,7 +6,7 @@ Basic Serverless API using typescript and AWS Lambda.
 
 
 
-Make sure node, nvm, sls, asnd awscli are installed
+Make sure node, nvm, sls, and awscli are installed:
 
 
 Node: https://nodejs.org/en/download/
@@ -19,19 +19,19 @@ AWSCLI: `curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bu
 
 
 
-Move into the demo-service directory
+Move into the demo-service directory:
 
 `cd demo-service`
 
 
 
-Install dependencies
+Install dependencies:
 
 `npm install`
 
 
 
-Configure your AWS credentials
+Configure your AWS credentials:
 
 `serverless config credentials --provider aws --key YOUR_ACCESS_KEY --secret YOUR_SECRET_KEY`
 
