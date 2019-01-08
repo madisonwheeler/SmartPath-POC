@@ -7,11 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "ftp": "0.3.10"
+    "ftp": "0.3.10",
+    "epsagon": "^1.7.5"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.1",
     "@types/node": "^8.0.57",
+    "serverless-plugin-epsagon": "^1.4.10",
     "serverless-webpack": "^5.1.1",
     "source-map-support": "^0.5.6",
     "ts-loader": "^4.2.0",

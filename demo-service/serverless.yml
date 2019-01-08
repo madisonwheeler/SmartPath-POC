@@ -3,6 +3,7 @@ service:
 
 # Add the serverless-webpack plugin
 plugins:
+  - serverless-plugin-epsagon
   - serverless-webpack
 
 provider:
@@ -11,6 +12,11 @@ provider:
   environment: 
     FTP_USER: ${ssm:FTP_USER}
     FTP_PW: ${ssm:FTP_PW}
+
+custom:
+  epsagon:
+    token: ${ssm:EPSAGON_TOKEN}
+    appName: aws-nodejs-typescript
 
 functions:
   hello:
