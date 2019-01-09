@@ -17,6 +17,7 @@ jobs:
             command: |
               if [ "${CIRCLE_BRANCH}" == "circleci-stack" ]; then
                 npm run deploy-sandbox
+              fi
 
   build_dev:
       docker:
@@ -35,6 +36,7 @@ jobs:
             command: |
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
                 npm run deploy-dev
+              fi
 
   test:
     docker:
