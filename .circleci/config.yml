@@ -15,7 +15,7 @@ jobs:
         - run:
             name: Deploy application
             command: |
-              if [ "${CIRCLE_BRANCH}" == "circleci-stack" ]; then
+              if [ "${CIRCLE_BRANCH}" != "master" ]; then
                 npm run deploy-sandbox
               fi
 
