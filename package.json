@@ -6,7 +6,7 @@
   "scripts": {
     "deploy": "serverless deploy",
     "deploy-dev": "serverless deploy --stage dev",
-    "deploy-sandbox": "serverless deploy --stage sandbox",
+    "deploy-sandbox": "serverless deploy --stage ${CIRCLE_BRANCH}",
     "deploy-qa": "serverless deploy --stage qa",
     "pretest": "tsc",
     "test": "cucumber-js app/**/*.feature; npm run clean:js",
