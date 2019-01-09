@@ -1,5 +1,23 @@
 version: 2
 jobs:
+  build_dev:
+      docker:
+        - image: circleci/node:8.10
+      filters:
+            branches:
+              ignore: /^master*/
+      steps:
+        - checkout
+
+        - run:
+            name: Install dependencies
+            command: npm install
+        - run:
+            name: Deploy application
+            command: |
+              if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                npm run deploy
+
   build_sandbox:
       docker:
         - image: circleci/node:8.10
@@ -14,7 +32,9 @@ jobs:
             command: npm install
         - run:
             name: Deploy application
-            command: npm run deploy-sandbox
+            command: |
+              if [ "${CIRCLE_BRANCH}" == "circleci-stack" ]; then
+                npm run deploy-sandbox
 
   build_dev:
       docker:
