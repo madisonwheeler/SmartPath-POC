@@ -11,6 +11,8 @@ jobs:
             command: npm install
 
   deploy_sandbox:
+      docker:
+        - image: circleci/node:8.10
       steps:
         - run:
             name: Deploy application
