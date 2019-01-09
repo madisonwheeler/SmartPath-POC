@@ -4,8 +4,10 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "pretest": "tsc",
+    "test": "cucumber-js app/**/*.feature; npm run clean:js",
+    "clean:js": "rimraf app/**.js* app/**/*.js*"
   },
   "dependencies": {
     "ftp": "0.3.10"
@@ -13,6 +15,12 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.1",
     "@types/node": "^8.0.57",
+    "chai": "^4.2.0",
+    "cucumber": "^5.1.0",
+    "cucumber-tsflow": "^3.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "rimraf": "^2.6.3",
     "serverless-webpack": "^5.1.1",
     "source-map-support": "^0.5.6",
     "ts-loader": "^4.2.0",
