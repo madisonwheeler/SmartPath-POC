@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-dev:
       docker:
         - image: circleci/node:8.10
       filters:
@@ -10,9 +10,12 @@ jobs:
         - checkout
 
         - run:
-            name: Install Serverless CLI and dependencies
-            command: |
-              npm install
+            name: Install dependencies
+            command: npm install
+
+        - run:
+            name: Run unit tests
+            command: npm test
 
         - run:
             name: Deploy application
