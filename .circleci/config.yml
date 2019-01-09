@@ -3,7 +3,6 @@ jobs:
   build:
       docker:
         - image: circleci/node:8.10
-      working_directory: ~/SmartPath-POC/demo-service
       filters:
         branches:
           only: master
