@@ -10,26 +10,11 @@ jobs:
             name: Install dependencies
             command: npm install
 
-        - run:
-            name: Deploy application
-            command: npm run deploy
-
-  build_dev:
-      docker:
-        - image: circleci/node:8.10
-      filters:
-        branches:
-          only: master
+  deploy_sandbox:
       steps:
-        - checkout
-
-        - run:
-            name: Install dependencies
-            command: npm install
-
         - run:
             name: Deploy application
-            command: npm run deploy-dev
+            command: npm run deploy-sandbox
 
   test:
     docker:
@@ -44,7 +29,8 @@ jobs:
 
 workflows:
   version: 2
-  build_dev:
+  build_sandbox:
     jobs:
-      - build_dev
+      - build
+      - deploy_sandbox
       - test
