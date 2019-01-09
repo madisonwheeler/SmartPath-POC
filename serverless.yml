@@ -3,14 +3,27 @@ service:
 
 # Add the serverless-webpack plugin
 plugins:
+  - serverless-plugin-iopipe
   - serverless-webpack
 
 provider:
   name: aws
   runtime: nodejs8.10
+  stage: dev
   environment: 
     FTP_USER: ${ssm:FTP_USER}
     FTP_PW: ${ssm:FTP_PW}
+    IOPIPE_TOKEN: ${ssm:IOPIPE_TOKEN}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:DescribeStream
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+        - dynamodb:ListStreams
+      Resource:
+        - { Fn::GetAtt: [VehicleRecords, Arn]}
 
 functions:
   hello:
@@ -25,3 +38,30 @@ functions:
       - http:
           method: get
           path: ftpDownload
+  dynamo:
+    handler: app/dynamoDBStreamTrigger/index.dynamo
+    events:
+      - stream:
+          type: dynamodb
+          arn:
+            Fn::GetAtt:
+              - VehicleRecords
+              - StreamArn
+
+resources:
+    Resources:
+      VehicleRecords:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          AttributeDefinitions:
+            - AttributeName: vin
+              AttributeType: S
+          KeySchema:
+            - AttributeName: vin
+              KeyType: HASH
+          ProvisionedThroughput:
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
+          StreamSpecification:
+            StreamViewType: NEW_AND_OLD_IMAGES
+            
