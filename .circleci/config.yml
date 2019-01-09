@@ -1,22 +1,23 @@
 version: 2
-jobs:
-  build-dev:
-      docker:
-        - image: circleci/node:8.10
-      filters:
-        branches:
-          only: master
-      steps:
-        - checkout
+  workflows:
+    jobs:
+      build-dev:
+          docker:
+            - image: circleci/node:8.10
+          filters:
+            branches:
+              only: master
+          steps:
+            - checkout
 
-        - run:
-            name: Install dependencies
-            command: npm install
+            - run:
+                name: Install dependencies
+                command: npm install
 
-        - run:
-            name: Run unit tests
-            command: npm test
+            - run:
+                name: Run unit tests
+                command: npm test
 
-        - run:
-            name: Deploy application
-            command: npm run deploy
+            - run:
+                name: Deploy application
+                command: npm run deploy
